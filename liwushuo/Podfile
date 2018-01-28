@@ -1,0 +1,89 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '9.0'
+
+target 'liwushuo' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+inhibit_all_warnings!
+pod 'AFNetworking'
+pod 'SDWebImage'
+pod 'SDWebImage/GIF'
+pod 'MXParallaxHeader'
+#pod 'KMNavigationBarTransition' // 很有用，能解决我当前的问题
+#pod 'JZNavigationExtension'
+#pod 'WRNavigationBar'
+#pod 'FMDB'
+#pod 'MJRefresh'
+#pod 'SVProgressHUD'
+pod 'IQKeyboardManager'
+#pod 'FontAwesome' # 字体库
+#pod 'MMDrawerController'  # 侧边栏
+#pod 'MDHTMLLabel' # 轻量级 文本 Html 框架
+#pod 'FDFullscreenPopGesture'    #全屏侧滑返回手势
+#pod 'MLeaksFinder' , :configurations => ['Debug']   # 内存泄漏检测
+#pod 'SpinKit'   # loading 动画
+pod 'DGActivityIndicatorView' # loading 动画
+#pod 'HMSegmentedControl'    #滑动切换视图导航栏
+#pod 'WMPageController'      # 滑动切换视图导航栏
+#pod 'TZImagePickerController'  #一个支持多选、选原图和视频的图片选择器
+pod 'Masonry'           # 自动布局工具
+#pod 'YYKit', :inhibit_warnings => true         #强大的组件
+pod 'YYText'
+pod 'YYModel'
+pod 'YYCache'
+pod 'YYCategories'
+#pod 'DZNEmptyDataSet' #空白数据显示
+pod 'ChameleonFramework'  #多颜色集合
+#pod 'Shimmer'  # 闪光效果
+#pod 'FlatUIKit'   #A collection of awesome flat UI components for iOS.
+#pod 'UIFloatLabelTextField'
+#pod 'JVFloatLabeledTextField'
+#pod 'Onboard'   # An iOS framework to easily create a beautiful and engaging onboarding
+#pod 'TSMessages' # 💌 Easy to use and customizable messages/notifications for iOS à la Tweetbot
+#pod 'XLForm' # 快速搭建设置界面
+#pod 'VBFPopFlatButton' # œ   These are some examples of both types in different states:
+#pod 'SCLAlertView-Objective-C' # Beautiful animated Alert View. Written in Objective-C
+#pod 'DKNightVersion'    # Manage Colors, Integrate Night/Multiple Themes
+#pod 'pop'
+#pod 'SIAlertView'  # An UIAlertView replacement with block syntax and fancy transition styles.
+#pod 'RETableViewManager' # Powerful data driven content manager for UITableView.
+#pod 'CWStatusBarNotification'
+#pod 'CustomIOSAlertView'
+#pod 'RMPZoomTransitionAnimator' #   A custom zooming transition animation for UIViewController
+#pod 'MotionBlur' # MotionBlur allows you to add motion blur effect to iOS animations
+#pod 'RACollectionViewReorderableTripletLayout'
+#pod 'RGCardViewLayout'
+#pod 'MBProgressHUD'
+#pod 'PIXFeSpinner'
+#pod 'SLPagingView'
+#pod 'JFMinimalNotifications' # 内部通知栏样式
+#pod 'RKCardView'
+#pod 'LTInfiniteScrollView'
+#pod 'SKTagView'
+#pod 'AFDropdownNotification'  # Dropdown notification view for iOS
+#pod 'TAOverlay'  # toast
+#pod 'PinterestAnimator'  # PinterestAnimator like Pinterest 3.0++ App transition animation.
+#pod 'BCMagicTransition'
+pod 'TBActionSheet'
+pod 'YYWebImage'
+# 看到的有点意思的库，用于记录，不集成
+# cbangchen/CBPic2ker: A cool 📵 🖼 selector, will blow your mind.
+# https://github.com/cbangchen/CBPic2ker
+
+#pod 'CBPic2ker'    # 图片选择框架
+
+# zzyspace/ZYBannerView: 简单易用, 显示内容定制性强的可循环轮播控件. 可以实现类似淘宝商品详情中侧拉进入详情页的功能.
+# https://github.com/zzyspace/ZYBannerView
+
+pod 'ZYBannerView' # 图片轮播
+#pod 'MMPopupView' #用来显示所有弹出框的容器
+#pod 'TYPagerController'  #简单，支持定制，页面控制器,可以滚动内容和标题栏,包含多种style
+#pod 'SlackTextViewController'       # textView 自适应高度
+#pod 'CNPPopupController'            # 弹窗
+#pod 'MarqueeLabel' #文字跑马灯
+#pod 'AMWaveTransition' #水波浪转场动画
+
+  # Pods for liwushuo
+
+end
