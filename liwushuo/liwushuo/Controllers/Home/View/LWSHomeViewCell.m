@@ -11,7 +11,7 @@
 
 @interface LWSHomeViewCell()
 
-@property (nonatomic, strong) UIView *containerView;
+@property (nonatomic, strong) UIView *bottomView;
 /// 头像
 @property (nonatomic, strong) UIImageView *iconImageView;
 
@@ -46,18 +46,11 @@
 @implementation LWSHomeViewCell
 
 
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-//        [self.contentView addSubview:self.contentView];
-        self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
-        self.heightCaculated = NO;
-        [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        
-            make.width.mas_equalTo(@(Main_Screen_Width));
-        }];
-        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }
@@ -83,6 +76,7 @@
         [self.tagButton setAttributedTitle:attString forState:UIControlStateNormal];
     }
     [self.likeButton setTitle:[NSString stringWithFormat:@" %.f",model.likesCount] forState:UIControlStateNormal];
+    self.bottomView.backgroundColor = BackgroundColor;
 }
 
 - (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes
@@ -118,25 +112,28 @@
 
 #pragma mark - lazy load
 
-- (UIView *)containerView
+- (UIView *)bottomView
 {
-    if (!_containerView) {
-        _containerView = [[UIView alloc] init];
-        [self.contentView addSubview:_containerView];
-        [_containerView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView);
+    if (!_bottomView) {
+        _bottomView = [[UIView alloc] init];
+        [self.contentView addSubview:_bottomView];
+        [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(self.contentView);
+            make.height.mas_equalTo(@10);
+            make.top.equalTo(self.tagButton.mas_bottom);
         }];
     }
-    return _containerView;
+    return _bottomView;
 }
 - (UIImageView *)iconImageView
 {
     if (!_iconImageView) {
         _iconImageView = [[UIImageView alloc] init];
-        [self.containerView addSubview:_iconImageView];
+        [self.contentView addSubview:_iconImageView];
         [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.equalTo(self.containerView).offset(15);
+            make.top.left.equalTo(self.contentView).offset(15);
             make.width.height.mas_equalTo(@36);
+
         }];
         _iconImageView.contentMode = UIViewContentModeScaleAspectFill;
         _iconImageView.layer.cornerRadius = 18;
@@ -150,11 +147,11 @@
     if (!_nameLabel) {
         
         _nameLabel = [[UILabel alloc] init];
-        [self.containerView addSubview:_nameLabel];
+        [self.contentView addSubview:_nameLabel];
         [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.iconImageView.mas_right).offset(10);
             make.top.equalTo(self.iconImageView);
-            make.right.equalTo(self.containerView).offset(-15);
+            make.right.equalTo(self.contentView).offset(-15);
             make.height.mas_equalTo(@18);
         }];
         _nameLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:13];
@@ -168,7 +165,7 @@
     if (!_signatureLabel) {
         
         _signatureLabel = [[UILabel alloc] init];
-        [self.containerView addSubview:_signatureLabel];
+        [self.contentView addSubview:_signatureLabel];
         [_signatureLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.nameLabel);
 
@@ -186,7 +183,7 @@
     if (!_contentImageView) {
         
         _contentImageView = [[UIImageView alloc] init];
-        [self.containerView addSubview:_contentImageView];
+        [self.contentView addSubview:_contentImageView];
         [_contentImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.iconImageView.mas_bottom).offset(16);
             make.left.mas_equalTo(@15);
@@ -203,7 +200,7 @@
 {
     if (!_contentLabel) {
         _contentLabel = [[UILabel alloc] init];
-        [self.containerView addSubview:_contentLabel];
+        [self.contentView addSubview:_contentLabel];
         [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentImageView.mas_bottom).offset(20);
             make.left.right.equalTo(self.contentImageView);
@@ -223,11 +220,11 @@
 {
     if (!_introductionLabel) {
         _introductionLabel = [[UILabel alloc] init];
-        [self.containerView addSubview:_introductionLabel];
+        [self.contentView addSubview:_introductionLabel];
         [_introductionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentLabel.mas_bottom).offset(12);
             make.left.right.equalTo(self.contentImageView);
-            make.centerX.equalTo(self.containerView);
+            make.centerX.equalTo(self.contentView);
         }];
         _introductionLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
         _introductionLabel.textColor = RGBA(160, 150, 150, 1.0);
@@ -241,7 +238,7 @@
 {
     if (!_lineView) {
         _lineView = [[UIView alloc] init];
-        [self.containerView addSubview:_lineView];
+        [self.contentView addSubview:_lineView];
         [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
 //            make.bottom.equalTo(self.contentView).offset(-40);
             make.left.right.equalTo(self.contentImageView);
@@ -255,10 +252,10 @@
 {
     if (!_tagLabel) {
         _tagLabel = [[UILabel alloc] init];
-        [self.containerView addSubview:_tagLabel];
+        [self.contentView addSubview:_tagLabel];
         [_tagLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentImageView);
-            make.bottom.equalTo(self.containerView).offset(-12);
+            make.bottom.equalTo(self.contentView).offset(-12);
         }];
         _tagLabel.textColor = rgba(140, 120, 120, 1.0);
         _tagLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:11];
@@ -272,13 +269,13 @@
 {
     if (!_tagButton) {
         _tagButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.containerView addSubview:_tagButton];
+        [self.contentView addSubview:_tagButton];
         [_tagButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentImageView);
 //            make.centerY.equalTo(self.likeButton);
             make.height.mas_equalTo(@40);
-            make.bottom.equalTo(self.containerView);
             make.top.equalTo(self.lineView.mas_bottom);
+//            make.bottom.equalTo(self.contentView);
         }];
         _tagButton.titleLabel.textColor = rgba(140, 120, 120, 1.0);
         _tagButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:11];
@@ -292,7 +289,7 @@
 {
     if (!_likeButton) {
         _likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.containerView addSubview:_likeButton];
+        [self.contentView addSubview:_likeButton];
         [_likeButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.contentImageView);
 //            make.bottom.mas_equalTo(self.contentView).offset(-12);

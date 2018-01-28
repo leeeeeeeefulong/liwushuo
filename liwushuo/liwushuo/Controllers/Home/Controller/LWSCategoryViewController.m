@@ -12,9 +12,10 @@
 #import "CustomShareView.h"
 
 static NSString *const kCustomCell = @"kCustom";
-@interface LWSCategoryViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) UICollectionView *collectionView;
+@interface LWSCategoryViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
@@ -25,8 +26,8 @@ static NSString *const kCustomCell = @"kCustom";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view addSubview:self.collectionView];
-    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         if (@available(iOS 11.0, *)) {
             make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
             make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
@@ -42,7 +43,8 @@ static NSString *const kCustomCell = @"kCustom";
                                                                              target:self
                                                                              action:@selector(shareItemClick)];
     
-    [self requestCategoryData];
+    [self requestCategoryData]; // 请求数据
+    [self lineView];
 }
 
 - (void)shareItemClick
@@ -107,7 +109,7 @@ static NSString *const kCustomCell = @"kCustom";
             
             LWSData *model = [LWSData modelObjectWithDictionary:resultObject[@"data"]];
             weakSelf.dataArray = [NSMutableArray arrayWithArray:model.posts];
-            [weakSelf.collectionView reloadData];
+            [weakSelf.tableView reloadData];
             
         } else {
             // 非 200 的处理
@@ -119,43 +121,38 @@ static NSString *const kCustomCell = @"kCustom";
 }
 
 #pragma mark - collectionView
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.dataArray.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LWSHomeViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCustomCell forIndexPath:indexPath];
-    [cell configCellModel:self.dataArray[indexPath.item]];
+    LWSHomeViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCustomCell];
+    [cell configCellModel:self.dataArray[indexPath.row]];
     return cell;
 }
 
 #pragma mark - lazyload
-- (UICollectionView *)collectionView {
-    if (!_collectionView) {
-        
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.sectionInset = UIEdgeInsetsMake(10, 0, 10, 0);
-        flowLayout.minimumInteritemSpacing = 5;
-        flowLayout.minimumLineSpacing = 10;
-//        flowLayout.itemSize = CGSizeMake(Main_Screen_Width, Main_Screen_Width);
-        flowLayout.estimatedItemSize = CGSizeMake(Main_Screen_Width, Main_Screen_Width);
-        
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
-        _collectionView.showsVerticalScrollIndicator = NO;
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
-        _collectionView.backgroundColor = RGBA(250, 245, 245, 1.0);
-        [_collectionView registerClass:[LWSHomeViewCell class] forCellWithReuseIdentifier:kCustomCell];
-//        [_collectionView addSubview:self.headView];
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.rowHeight = UITableViewAutomaticDimension;
+        _tableView.estimatedRowHeight = Main_Screen_Width;
+        _tableView.backgroundColor = BackgroundColor;
+        _tableView.tableFooterView = [UIView new];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [_tableView registerClass:[LWSHomeViewCell class] forCellReuseIdentifier:kCustomCell];
     }
-    return _collectionView;
+    return _tableView;
 }
 
 - (NSMutableArray *)dataArray
