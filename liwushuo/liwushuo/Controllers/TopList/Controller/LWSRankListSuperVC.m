@@ -11,6 +11,7 @@
 #import "LWSRankListItemCell.h"
 #import "LWSRankDataModel.h"
 #import "LWSRankListModel.h"
+#import "LWSRecommendItemController.h"
 static NSString *const kRankListItem = @"kRankListItem";
 //static CGFloat kScrollNavViewHeight = 38.0;
 static CGFloat kCollectionItemHeight = 280.0;
@@ -113,6 +114,15 @@ static CGFloat kHeadImageHeight = 184.0;
     LWSRankListItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kRankListItem forIndexPath:indexPath];
     [cell configRankListItemModel:self.dataArray[indexPath.item]];
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    LWSRankListModel *model = self.dataArray[indexPath.item];
+    LWSRecommendItemController *vc = [[LWSRecommendItemController alloc] init];
+    vc.recommendID = [NSString stringWithFormat:@"%.f",model.itemsIdentifier];
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 #pragma mrak - lazy load
 - (UICollectionView *)collectionView {

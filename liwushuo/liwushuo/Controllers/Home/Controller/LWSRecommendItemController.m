@@ -12,6 +12,7 @@
 #import "LWSCommentViewController.h"
 #import "LWSMeImageBubbleView.h"
 #import "CustomShareView.h"
+#import "LWSItemCommentController.h"
 @interface LWSRecommendItemController()<UIScrollViewDelegate>
 
 /// 底部的 view
@@ -42,6 +43,7 @@ UIColor *normalColor = nil;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:kNavBackgroundColorAlpha(0)] forBarMetrics:UIBarMetricsDefault];
     
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -113,9 +115,9 @@ UIColor *normalColor = nil;
     BaseWebViewController *vc2 = [[BaseWebViewController alloc] init];
     _webVC = vc2;
     
-    LWSCommentViewController *vc3 = [[LWSCommentViewController alloc] init];
-    _commentVC = vc3;
-
+    LWSItemCommentController *vc3 = [[LWSItemCommentController alloc] init];
+    vc3.itemID = self.recommendID;
+    
     [self addChildViewController:vc1];
     [self addChildViewController:vc2];
     [self addChildViewController:vc3];
@@ -227,7 +229,7 @@ UIColor *normalColor = nil;
         
         if ([vc isKindOfClass:[LWSItemViewController class]]) {
             LWSItemViewController *itemVc = (LWSItemViewController *)vc;
-            [itemVc reloadAlpha];
+            
             [_titlesView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if ([obj isKindOfClass:[UIButton class]]) {
                     UIButton *button = (UIButton *)obj;
@@ -236,6 +238,7 @@ UIColor *normalColor = nil;
                 }
             }];
             self.indicatorView.backgroundColor = [UIColor whiteColor] ;
+            [itemVc reloadAlpha];
         }
         
         

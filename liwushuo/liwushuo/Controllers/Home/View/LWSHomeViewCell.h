@@ -13,5 +13,6 @@
 
 @property (nonatomic, copy) void(^typeClickBlcok)(void);
 
-- (void)configCellModel:(Items *)model;
+@property (nonatomic, strong) Items *model;
+//- (void)configCellModel:(Items *)model;
 @end

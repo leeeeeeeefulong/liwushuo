@@ -24,7 +24,13 @@
     self.view.backgroundColor = BackgroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.extendedLayoutIncludesOpaqueBars = YES;
-    
+    if ([[UIScrollView appearance] respondsToSelector:@selector(setContentInsetAdjustmentBehavior:)] ) {
+        if (@available(iOS 11.0, *)) {
+            [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+        } else {
+            // Fallback on earlier versions
+        }
+    }
 }
 
 // 如果需要导航栏下的定制样式的 lineView
@@ -33,7 +39,7 @@
     [self.view addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         if (@available(iOS 11.0, *)) {
-            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(44);
+            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
             make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
             make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
             

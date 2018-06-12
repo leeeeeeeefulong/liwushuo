@@ -45,7 +45,7 @@
                                                   parameters:parameter completionHandler:^(NSDictionary *resultDictionary, NSError *error) {
         
 
-                                                      NSLog(@"%@",resultDictionary);
+//                                                      NSLog(@"%@",resultDictionary);
                                                
         if (error) {
             failureBlock(error);

@@ -13,6 +13,7 @@
 
 @property (nonatomic, assign) double dataIdentifier;
 @property (nonatomic, strong) NSString *coverImageUrl;
+@property (nonatomic, strong) NSString *dataDescription;
 @property (nonatomic, assign) double postsCount;
 @property (nonatomic, assign) double likesCount;
 @property (nonatomic, strong) NSString *bannerWebpUrl;

@@ -14,6 +14,8 @@
 #import "LWSCategoryPostCollectionListCell.h"
 #import "LWSCategoryPostListViewController.h"
 #import "LWSCategoryFullViewController.h"
+#import "LWSItemCategoryViewController.h"
+#import "LWSChannels.h"
 
 static NSString *const kCategoryCell = @"kCategoryCell";
 static NSString *const kCategoryHeader = @"kCategoryHeader";
@@ -141,8 +143,10 @@ static CGFloat kSearchButtonHeight = 38.0f;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     LWSChannelGroups *group = self.dataArray[indexPath.section - 1];
-    LWSCategoryFullViewController * vc = [[LWSCategoryFullViewController alloc] init];
-    
+    LWSChannels *channels = group.channels[indexPath.item];
+    LWSItemCategoryViewController * vc = [[LWSItemCategoryViewController alloc] init];
+    vc.categoryID = [NSString stringWithFormat:@"%.f",channels.channelsIdentifier];
+    vc.navigationItem.title = channels.name;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -14,8 +14,8 @@
 #import "LWSRecommendData.h"
 #import "LWSRankListItemCell.h"
 #import "LWSRecommentPostCell.h"
-#import "MXParallaxHeader.h"
-
+#import "LWSDetailViewController.h"
+#import "LWSRecommendItemController.h"
 static NSString *const kDetailCell = @"kDetailCell";
 static NSString *const kPostCell = @"kPostCell";
 static CGFloat kDetailViewH = 220.0;
@@ -48,13 +48,13 @@ static CGFloat kDetailTtileH = 60.0;
 //    [self setupBannerView];
     [self.view addSubview:self.collectionView];
     
-    UIView *maskView = [[UIView alloc] init];
-    [self.view addSubview:maskView];   // 添加一个遮罩 View 防止白色字体显示不够明显的问题
-    [maskView mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIImageView *maskImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mask_top_3x120_"]];
+    [self.view addSubview:maskImageView];   // 添加一个遮罩 View 防止白色字体显示不够明显的问题
+    [maskImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
         make.height.mas_equalTo(@64);
     }];
-    maskView.backgroundColor = RGBA(0, 0, 0, 0.05);
+    
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         if (@available(iOS 11.0, *)) {
@@ -73,6 +73,21 @@ static CGFloat kDetailTtileH = 60.0;
 
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.navigationController.navigationBar setTintColor:kNavTintColor];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:kNavBackgroundColor] forBarMetrics:UIBarMetricsDefault];
+    
+    //    [self.alphaView removeFromSuperview];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -228,6 +243,28 @@ static CGFloat kDetailTtileH = 60.0;
     LWSRankListItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kDetailCell forIndexPath:indexPath];
     cell.items = items;
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (collectionView == self.postCollectionView) {
+        // 跳去专辑详情web
+        LWSRecommendPosts *model = self.postArray[indexPath.item];
+        LWSDetailViewController *vc = [[LWSDetailViewController alloc] init];
+        vc.postsID = [NSString stringWithFormat:@"%.f",model.recommendPostsIdentifier];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    } else {
+        // 跳去 另外单品详情
+        LWSRecommendItems *items = self.dataArray[indexPath.item];
+        LWSRecommendItemController *vc = [[LWSRecommendItemController alloc] init];
+        vc.recommendID = [NSString stringWithFormat:@"%.f",items.recommendItemsIdentifier];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    
+    
+    
 }
 
 #pragma mark - Getts

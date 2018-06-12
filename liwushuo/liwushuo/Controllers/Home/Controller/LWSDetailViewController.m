@@ -151,7 +151,7 @@
 - (void)rightItemAction
 {
     LWSColumnDetailViewController *vc = [[LWSColumnDetailViewController alloc] init];
-    
+    vc.titleStr = self.data.detailDataColumn.title;
     vc.columnID = [NSString stringWithFormat:@"%.f",self.data.detailDataColumn.detailDataColumnIdentifier];
     [self.navigationController  pushViewController:vc animated:YES];
 }

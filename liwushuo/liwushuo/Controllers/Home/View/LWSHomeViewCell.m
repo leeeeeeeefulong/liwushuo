@@ -51,16 +51,21 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+        
     }
     return self;
 }
 
-- (void)configCellModel:(Items *)model
+- (void)setModel:(Items *)model
 {
-    
     self.backgroundColor = [UIColor whiteColor];
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.author.avatarUrl] placeholderImage:[UIImage imageNamed:@"Card-Stack"]];
-    [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:model.coverImageUrl] placeholderImage:[UIImage imageNamed:@"Card-Stack"]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.author.avatarUrl] placeholderImage:nil options:SDWebImageTransformAnimatedImage completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        
+    }];
+    [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:model.coverImageUrl] placeholderImage:nil options:SDWebImageProgressiveDownload completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        
+    }];
     self.nameLabel.text = model.author.nickname;
     self.signatureLabel.text = model.author.introduction;
     self.contentLabel.text = model.title;
@@ -77,7 +82,21 @@
     }
     [self.likeButton setTitle:[NSString stringWithFormat:@" %.f",model.likesCount] forState:UIControlStateNormal];
     self.bottomView.backgroundColor = BackgroundColor;
+    
 }
+- (void)configCellModel:(Items *)model
+{
+    
+
+}
+
+//- (void)layoutSubviews
+//{
+//    [super layoutSubviews];
+//    self.contentLabel.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 30;
+//    self.introductionLabel.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 30;
+//    [super layoutSubviews];
+//}
 
 - (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes
 {
@@ -112,19 +131,7 @@
 
 #pragma mark - lazy load
 
-- (UIView *)bottomView
-{
-    if (!_bottomView) {
-        _bottomView = [[UIView alloc] init];
-        [self.contentView addSubview:_bottomView];
-        [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.equalTo(self.contentView);
-            make.height.mas_equalTo(@10);
-            make.top.equalTo(self.tagButton.mas_bottom);
-        }];
-    }
-    return _bottomView;
-}
+// 头像
 - (UIImageView *)iconImageView
 {
     if (!_iconImageView) {
@@ -142,6 +149,7 @@
     return _iconImageView;
 }
 
+// 昵称
 - (UILabel *)nameLabel
 {
     if (!_nameLabel) {
@@ -159,7 +167,7 @@
     }
     return _nameLabel;
 }
-
+// 个性签名
 - (UILabel *)signatureLabel
 {
     if (!_signatureLabel) {
@@ -168,7 +176,7 @@
         [self.contentView addSubview:_signatureLabel];
         [_signatureLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.nameLabel);
-
+//            make.top.equalTo(self.nameLabel.mas_bottom).offset(5);
             make.bottom.equalTo(self.iconImageView);
         }];
         _signatureLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:11];
@@ -178,6 +186,7 @@
     return _signatureLabel;
 }
 
+// 图片
 - (UIImageView *)contentImageView
 {
     if (!_contentImageView) {
@@ -196,14 +205,17 @@
     return _contentImageView;
 }
 
+// 内容标题
 - (UILabel *)contentLabel
 {
     if (!_contentLabel) {
         _contentLabel = [[UILabel alloc] init];
         [self.contentView addSubview:_contentLabel];
         [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentImageView.mas_bottom).offset(20);
-            make.left.right.equalTo(self.contentImageView);
+            make.top.equalTo(self.contentImageView.mas_bottom).offset(10);
+//            make.left.right.equalTo(self.contentImageView);
+            make.width.mas_equalTo(self.contentView.mas_width).offset(-30);
+            make.centerX.equalTo(self.contentView);
 //            make.bottom.equalTo(self.signatureLabel.mas_top).offset(-12);
 //            make.height.mas_equalTo(@20);
         }];
@@ -215,7 +227,7 @@
     }
     return _contentLabel;
 }
-
+// 描述按钮
 - (UILabel *)introductionLabel
 {
     if (!_introductionLabel) {
@@ -224,16 +236,18 @@
         [_introductionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentLabel.mas_bottom).offset(12);
             make.left.right.equalTo(self.contentImageView);
-            make.centerX.equalTo(self.contentView);
+//            make.centerX.equalTo(self.contentView);
+            
         }];
         _introductionLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
         _introductionLabel.textColor = RGBA(160, 150, 150, 1.0);
         _introductionLabel.textAlignment = NSTextAlignmentNatural;
-        _introductionLabel.numberOfLines = 2;
+        _introductionLabel.numberOfLines = 0;
     }
     return _introductionLabel;
 }
 
+//分割线
 - (UIView *)lineView
 {
     if (!_lineView) {
@@ -241,20 +255,23 @@
         [self.contentView addSubview:_lineView];
         [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
 //            make.bottom.equalTo(self.contentView).offset(-40);
+            make.top.equalTo(self.introductionLabel.mas_bottom).offset(10);
             make.left.right.equalTo(self.contentImageView);
             make.height.mas_equalTo(@0.33333);
-            make.top.equalTo(self.introductionLabel.mas_bottom).offset(20);
+            
         }];
     }
     return _lineView;
 }
+
 - (UILabel *)tagLabel
 {
     if (!_tagLabel) {
         _tagLabel = [[UILabel alloc] init];
-        [self.contentView addSubview:_tagLabel];
+//        [self.contentView addSubview:_tagLabel];
         [_tagLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentImageView);
+            make.top.equalTo(self.lineView.mas_bottom).offset(10);
             make.bottom.equalTo(self.contentView).offset(-12);
         }];
         _tagLabel.textColor = rgba(140, 120, 120, 1.0);
@@ -265,17 +282,18 @@
     return _tagLabel;
 }
 
+// tag 按钮
 - (UIButton *)tagButton
 {
     if (!_tagButton) {
         _tagButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.contentView addSubview:_tagButton];
         [_tagButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.lineView.mas_bottom);
             make.left.equalTo(self.contentImageView);
 //            make.centerY.equalTo(self.likeButton);
             make.height.mas_equalTo(@40);
-            make.top.equalTo(self.lineView.mas_bottom);
-//            make.bottom.equalTo(self.contentView);
+            //            make.bottom.equalTo(self.contentView);
         }];
         _tagButton.titleLabel.textColor = rgba(140, 120, 120, 1.0);
         _tagButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:11];
@@ -285,6 +303,7 @@
     return _tagButton;
 }
 
+//点赞按钮
 - (UIButton *)likeButton
 {
     if (!_likeButton) {
@@ -301,6 +320,22 @@
         [_likeButton setTitleColor:RGBA(160, 150, 150, 1.0) forState:UIControlStateNormal];
     }
     return _likeButton;
+}
+
+// 底部分隔 view
+- (UIView *)bottomView
+{
+    if (!_bottomView) {
+        _bottomView = [[UIView alloc] init];
+        [self.contentView addSubview:_bottomView];
+        [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.tagButton.mas_bottom).priorityHigh();
+            make.left.right.bottom.equalTo(self.contentView);
+            make.height.mas_equalTo(@10);
+            
+        }];
+    }
+    return _bottomView;
 }
 
 @end

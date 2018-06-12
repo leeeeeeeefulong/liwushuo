@@ -15,6 +15,7 @@
 #import "SecondaryBanners.h"
 #import "LWSDetailViewController.h"
 #import <SafariServices/SafariServices.h>
+#import "UITableView+FDTemplateLayoutCell.h"
 
 #define kCollectionViewHeight kScrollNavViewHeight + SafeAreaTopHeight + TabbarHeight
 static NSString *const kCustomCell = @"kCustom";
@@ -90,7 +91,7 @@ static CGFloat markY = 0.0f;
     [self.view addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         if (@available(iOS 11.0, *)) {
-            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(44);
+            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
             make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
             make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
             
@@ -102,6 +103,7 @@ static CGFloat markY = 0.0f;
         make.height.mas_equalTo(@0.3333);
     }];
     lineView.backgroundColor = rgba(240, 230, 230, 1.0);
+    [self.tableView registerClass:[LWSHomeViewCell class] forCellReuseIdentifier:kCustomCell];
 }
 
 - (void)tapBtnScrollToTop
@@ -211,6 +213,12 @@ static CGFloat markY = 0.0f;
 
 
 #pragma mark - tableView Delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [tableView fd_heightForCellWithIdentifier:kCustomCell cacheByIndexPath:indexPath configuration:^(LWSHomeViewCell *cell) {
+        cell.model = self.dataArray[indexPath.row];
+    }];
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -226,10 +234,11 @@ static CGFloat markY = 0.0f;
 {
     Items *model = self.dataArray[indexPath.row];
     LWSHomeViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCustomCell];
-    if (!cell) {
-        cell = [[LWSHomeViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCustomCell];
-    }
-    [cell configCellModel:model];
+//    if (!cell) {
+//        cell = [[LWSHomeViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCustomCell];
+//    }
+    cell.fd_enforceFrameLayout = NO;
+    cell.model = model;
     __weak typeof(self) weakSelf = self;
     cell.typeClickBlcok = ^{
         LWSColumnDetailViewController *vc = [[LWSColumnDetailViewController alloc] init];
@@ -266,8 +275,8 @@ static CGFloat markY = 0.0f;
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.rowHeight = UITableViewAutomaticDimension;
-        _tableView.estimatedRowHeight = Main_Screen_Width;
+//        _tableView.rowHeight = UITableViewAutomaticDimension;
+//        _tableView.estimatedRowHeight = Main_Screen_Width;
         _tableView.backgroundColor = BackgroundColor;
         _tableView.tableFooterView = [UIView new];
         _tableView.tableHeaderView = self.headView;

@@ -8,6 +8,11 @@
 
 #import "AppDelegate.h"
 #import "IQKeyboardManager.h"
+#import "JPFPSStatus.h"
+#import "MLTransition.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 
 @interface AppDelegate ()
 
@@ -19,6 +24,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    // 崩溃日志集成
+    [Fabric with:@[[Crashlytics class]]];
+    
+    [MLTransition validatePanBackWithMLTransitionGestureRecognizerType:MLTransitionGestureRecognizerTypePan];
 
     // AppDelegate 进行全局设置
     if (@available(iOS 11.0, *)) {
@@ -26,6 +35,7 @@
         if ([[UIScrollView appearance] respondsToSelector:@selector(setContentInsetAdjustmentBehavior:)]) {
             [UIScrollView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
+        [UIScrollView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         
         [UITableView appearance].estimatedRowHeight = 0;
         [UITableView appearance].estimatedSectionHeaderHeight = 0;
@@ -34,8 +44,10 @@
     
     // 键盘管理
     [IQKeyboardManager sharedManager].enable = YES;
+    [[JPFPSStatus sharedInstance] open];
     
 //    [self requestUserLoginData];
+
     
     return YES;
 }

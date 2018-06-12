@@ -15,6 +15,15 @@
 @property (nonatomic, strong) UIView *containView;
 @property (nonatomic, strong) UILabel *descriptionLabel;
 @property (nonatomic, strong) UIButton *seeAllBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *containViewWidth;
+
+@property (nonatomic, strong) UIImageView *imageView;
+
+@property (nonatomic, strong) UILabel *titleLabel;
+
+@property (nonatomic, strong) UIButton *likeButton;
+
+@property (nonatomic, strong) UIButton *favoriteButton;
 
 @end
 
@@ -29,8 +38,26 @@
     return self;
 }
 
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        
+    }
+    return self;
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.containViewWidth.constant = Main_Screen_Width;
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+}
+
 - (void)baseUI
 {
+    self.backgroundColor = [UIColor whiteColor];
     self.titleLable = [[UILabel alloc] initWithFrame:CGRectMake(11, 13, 100, 14)];
     self.titleLable.textColor = rgba(120, 120, 120, 1.0);
     self.titleLable.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];

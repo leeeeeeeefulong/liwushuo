@@ -97,4 +97,5 @@
     }
     return _itemPriceLabel;
 }
+
 @end

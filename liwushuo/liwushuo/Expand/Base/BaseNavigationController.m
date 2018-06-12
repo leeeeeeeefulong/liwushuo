@@ -22,7 +22,9 @@
     [bar setBackgroundImage:[UIImage imageWithColor:RGB(255, 254, 254)] forBarMetrics:UIBarMetricsDefault];
     [bar setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"PingFangSC-Regular" size:17.0], NSForegroundColorAttributeName : kNavTitleColor}];
     [bar setTintColor:kNavTintColor];
+//    bar.translucent = YES;
     bar.shadowImage = [UIImage new];
+
 //    bar.shadowImage = [UIImage imageWithColor:rgba(240, 230, 230, 1.0)];
 }
 - (void)viewDidLoad {
@@ -119,6 +121,11 @@
 }
 
 - (UIViewController *)childViewControllerForStatusBarStyle
+{
+    return self.topViewController;
+}
+
+- (UIViewController *)childViewControllerForStatusBarHidden
 {
     return self.topViewController;
 }

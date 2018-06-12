@@ -11,7 +11,8 @@
 #import "LWSDetailPostsListCell.h"
 #import "LWSColumnDetailHeaderView.h"
 #import "LWSColumnDescriptionView.h"
-
+#import "LWSDetailViewController.h"
+#import "LWSPosts.h"
 #define InsetTopHeight (Main_Screen_Height == 812.0 ? 0 : 20)
 
 @interface LWSColumnDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -27,6 +28,7 @@
 @property (nonatomic, strong) UIView *alphaView;
 
 @property (nonatomic, copy) NSString *nextUrl;
+
 @end
 
 @implementation LWSColumnDetailViewController
@@ -34,37 +36,34 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-  
-    [self.navigationController.navigationBar setTintColor:kNavTintColor];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:kNavBackgroundColor] forBarMetrics:UIBarMetricsDefault];
     
-//    [self.alphaView removeFromSuperview];
+//    [self.navigationController.navigationBar setTintColor:kNavTintColor];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:kNavBackgroundColor] forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
-//    CGFloat offSetY = self.tableView.contentOffset.y;
     [self alphaNavView:self.tableView.contentOffset.y];
-    
 
 }
 
 - (void)alphaNavView:(CGFloat)offSetY
 {
-    CGFloat alpha = offSetY / 64.0;
-    
+    CGFloat alpha = offSetY / 64;
+    NSLog(@" alpha =  %f , offSetY = %f",alpha,offSetY);
     if (alpha >= 0.7) {
         self.navigationItem.title = self.titleStr;
         [self.navigationController.navigationBar setTintColor:kNavTintColor];
-        
+        [self setNeedsStatusBarAppearanceUpdate];
     } else {
         self.navigationItem.title = nil;
         [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+        [self setNeedsStatusBarAppearanceUpdate];
     }
-    
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:kNavBackgroundColorAlpha(offSetY / 64)] forBarMetrics:UIBarMetricsDefault];
+//    self.navigationController.navigationBar.ml_backgroundAlpha = alpha;
+//    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:kNavBackgroundColorAlpha(alpha)] forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)viewDidLoad {
@@ -72,6 +71,20 @@
     // Do any additional setup after loading the view.
     
     [self.view addSubview:self.tableView];
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (@available(iOS 11.0, *)) {
+            
+            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(-64);
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            
+        } else {
+            make.edges.equalTo(self.view).insets(UIEdgeInsetsMake(0, 0, 0, 0));
+        }
+    }];
+    
     self.navigationItem.title = nil;
     UIImage *leftItemImage = [UIImage imageNamed:@"btn_back_black_24x24_"];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:leftItemImage
@@ -83,21 +96,15 @@
                                                                                      action:@selector(ShareBtnPress)];
     
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        if (@available(iOS 11.0, *)) {
-            
-            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(-topMargin);
-            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
-            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
-            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-            
-        } else {
-            make.edges.equalTo(self.view).insets(UIEdgeInsetsMake(0, 0, 0, 0));
-        }
-    }];
+//    self.navigationController.navigationBar.barTintColor
 
     [self requestColumDetailData];
+    
+    
+    [self.tableView.tableHeaderView layoutIfNeeded];
+    [self.columnDetailHeaderView layoutIfNeeded];
+    self.tableView.tableHeaderView = self.columnDetailHeaderView;
+   
 }
 
 - (UIImage *)createAImageWithColor:(UIColor *)color alpha:(CGFloat)alpha{
@@ -225,6 +232,9 @@
             LWSData *model = [LWSData modelObjectWithDictionary:resultObject[@"data"]];
             weakSelf.dataArray = [NSMutableArray arrayWithArray:model.posts];
             weakSelf.columnDetailHeaderView.data = model;
+            [weakSelf.tableView.tableHeaderView layoutIfNeeded];
+            [weakSelf.columnDetailHeaderView layoutIfNeeded];
+            weakSelf.tableView.tableHeaderView = weakSelf.columnDetailHeaderView;
             weakSelf.nextUrl = model.paging.nextUrl;
             [weakSelf.tableView reloadData];
             
@@ -278,6 +288,16 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    LWSPosts *model = self.dataArray[indexPath.row];
+    LWSDetailViewController *vc = [[LWSDetailViewController alloc] init];
+    vc.postsID = [NSString stringWithFormat:@"%.f",model.postsIdentifier];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - StatusBarStyle
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
@@ -310,7 +330,8 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         _tableView.separatorColor = rgba(235, 235, 235, 1.0);
 //        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        _tableView.tableHeaderView = self.columnDetailHeaderView;
+//        _tableView.tableHeaderView = self.columnDescriptionView;
+        _tableView.bounces = NO;
 //        [_tableView addSubview:self.columnDetailHeaderView];
 //        [_tableView addSubview:self.columnDescriptionView];
     }
@@ -320,7 +341,7 @@
 - (LWSColumnDetailHeaderView *)columnDetailHeaderView
 {
     if (!_columnDetailHeaderView) {
-        _columnDetailHeaderView = [[LWSColumnDetailHeaderView alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 181)];
+        _columnDetailHeaderView = [[LWSColumnDetailHeaderView alloc] init];        
     }
     return _columnDetailHeaderView;
 }
@@ -328,7 +349,11 @@
 - (LWSColumnDescriptionView *)columnDescriptionView
 {
     if (!_columnDescriptionView) {
-        _columnDescriptionView = [[LWSColumnDescriptionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.columnDetailHeaderView.frame) , Main_Screen_Width, 122)];
+//        _columnDescriptionView = [[LWSColumnDescriptionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.columnDetailHeaderView.frame) , Main_Screen_Width, 122)];
+        _columnDescriptionView = [LWSColumnDescriptionView viewFromXib];
+        _columnDescriptionView.width = Main_Screen_Width;
+        _columnDescriptionView.translatesAutoresizingMaskIntoConstraints = NO;
+        
     }
     return _columnDescriptionView;
 }

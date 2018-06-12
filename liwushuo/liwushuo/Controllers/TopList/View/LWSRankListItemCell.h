@@ -14,7 +14,7 @@
 @property (nonatomic, strong) UILabel *itemTitleLabel;
 @property (nonatomic, strong) UILabel *itemDescriptionLabel;
 @property (nonatomic, strong) UILabel *itemPriceLabel;
-
+@property (nonatomic, strong) UILabel *topLabel;
 @property (nonatomic, strong) LWSRecommendItems *items;
 
 - (void)configRankListItemModel:(LWSRankListModel *)model;

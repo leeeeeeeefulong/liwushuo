@@ -113,17 +113,23 @@
 		9BF043801FE31A30004C0BDB /* LWSGiftCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF0437F1FE31A30004C0BDB /* LWSGiftCategoryCell.m */; };
 		AC2590C32008047400340FBE /* LWSItemlWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2590C22008047400340FBE /* LWSItemlWebController.m */; };
 		AC26A7B1201E843800B1CBF1 /* LWSNewSuperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AC26A7B0201E843800B1CBF1 /* LWSNewSuperVC.m */; };
+		AC26A7B4201E9D8F00B1CBF1 /* LWSItemCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC26A7B3201E9D8F00B1CBF1 /* LWSItemCommentController.m */; };
+		AC26A7B6201EB33B00B1CBF1 /* LWSColumnDescriptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC26A7B5201EB33B00B1CBF1 /* LWSColumnDescriptionView.xib */; };
 		AC36A6562003AC4200681EB7 /* LWSRecommendData.m in Sources */ = {isa = PBXBuildFile; fileRef = AC36A6512003AC4200681EB7 /* LWSRecommendData.m */; };
 		AC36A6572003AC4200681EB7 /* LWSRecommendItems.m in Sources */ = {isa = PBXBuildFile; fileRef = AC36A6522003AC4200681EB7 /* LWSRecommendItems.m */; };
 		AC36A6582003AC4200681EB7 /* LWSRecommendPosts.m in Sources */ = {isa = PBXBuildFile; fileRef = AC36A6542003AC4200681EB7 /* LWSRecommendPosts.m */; };
 		AC36A65B2003B29B00681EB7 /* LWSRecommendHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC36A65A2003B29B00681EB7 /* LWSRecommendHeaderView.m */; };
 		AC36A65E2003C45600681EB7 /* LWSRecommentPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC36A65D2003C45600681EB7 /* LWSRecommentPostCell.m */; };
 		AC80186320060D6900D78603 /* LWSContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC80186220060D6900D78603 /* LWSContentView.m */; };
+		ACAFD26B201F88B8001F27F1 /* LWSItemCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAFD26A201F88B8001F27F1 /* LWSItemCategoryViewController.m */; };
 		ACC84A7C201B2DB8003BD571 /* LWSShareViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC84A7B201B2DB8003BD571 /* LWSShareViewCell.m */; };
 		ACD221C0201BD3E2007F3312 /* LWSLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD221BF201BD3E2007F3312 /* LWSLineView.m */; };
 		ACD221C3201BE6F6007F3312 /* LWSCategoryPostListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD221C2201BE6F6007F3312 /* LWSCategoryPostListViewController.m */; };
 		ACD221C6201BEEC7007F3312 /* LWSMePostColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD221C5201BEEC7007F3312 /* LWSMePostColumnCell.m */; };
 		ACD221C9201BF9F4007F3312 /* LWSCategoryFullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD221C8201BF9F4007F3312 /* LWSCategoryFullViewController.m */; };
+		ACFDCCDB205DC99400CC9E76 /* UINavigationBar+MLNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFDCCD5205DC99300CC9E76 /* UINavigationBar+MLNavigationBarTransition.m */; };
+		ACFDCCDC205DC99400CC9E76 /* NSString+MLNavigationBarTransition_Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFDCCD8205DC99400CC9E76 /* NSString+MLNavigationBarTransition_Encrypt.m */; };
+		ACFDCCDD205DC99400CC9E76 /* UINavigationController+MLNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFDCCDA205DC99400CC9E76 /* UINavigationController+MLNavigationBarTransition.m */; };
 		B0590F01CCAED6DDDAED2CFE /* libPods-liwushuo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D52D888AFC354514B0101F92 /* libPods-liwushuo.a */; };
 /* End PBXBuildFile section */
 
@@ -340,6 +346,9 @@
 		AC2590C22008047400340FBE /* LWSItemlWebController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LWSItemlWebController.m; sourceTree = "<group>"; };
 		AC26A7AF201E843800B1CBF1 /* LWSNewSuperVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LWSNewSuperVC.h; sourceTree = "<group>"; };
 		AC26A7B0201E843800B1CBF1 /* LWSNewSuperVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LWSNewSuperVC.m; sourceTree = "<group>"; };
+		AC26A7B2201E9D8F00B1CBF1 /* LWSItemCommentController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LWSItemCommentController.h; sourceTree = "<group>"; };
+		AC26A7B3201E9D8F00B1CBF1 /* LWSItemCommentController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LWSItemCommentController.m; sourceTree = "<group>"; };
+		AC26A7B5201EB33B00B1CBF1 /* LWSColumnDescriptionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LWSColumnDescriptionView.xib; sourceTree = "<group>"; };
 		AC36A6502003AC4200681EB7 /* LWSRecommendPosts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWSRecommendPosts.h; sourceTree = "<group>"; };
 		AC36A6512003AC4200681EB7 /* LWSRecommendData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWSRecommendData.m; sourceTree = "<group>"; };
 		AC36A6522003AC4200681EB7 /* LWSRecommendItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWSRecommendItems.m; sourceTree = "<group>"; };
@@ -352,6 +361,8 @@
 		AC36A65D2003C45600681EB7 /* LWSRecommentPostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LWSRecommentPostCell.m; sourceTree = "<group>"; };
 		AC80186120060D6900D78603 /* LWSContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LWSContentView.h; sourceTree = "<group>"; };
 		AC80186220060D6900D78603 /* LWSContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LWSContentView.m; sourceTree = "<group>"; };
+		ACAFD269201F88B8001F27F1 /* LWSItemCategoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LWSItemCategoryViewController.h; sourceTree = "<group>"; };
+		ACAFD26A201F88B8001F27F1 /* LWSItemCategoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LWSItemCategoryViewController.m; sourceTree = "<group>"; };
 		ACC84A7A201B2DB8003BD571 /* LWSShareViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LWSShareViewCell.h; sourceTree = "<group>"; };
 		ACC84A7B201B2DB8003BD571 /* LWSShareViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LWSShareViewCell.m; sourceTree = "<group>"; };
 		ACD221BE201BD3E2007F3312 /* LWSLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LWSLineView.h; sourceTree = "<group>"; };
@@ -362,6 +373,13 @@
 		ACD221C5201BEEC7007F3312 /* LWSMePostColumnCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LWSMePostColumnCell.m; sourceTree = "<group>"; };
 		ACD221C7201BF9F4007F3312 /* LWSCategoryFullViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LWSCategoryFullViewController.h; sourceTree = "<group>"; };
 		ACD221C8201BF9F4007F3312 /* LWSCategoryFullViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LWSCategoryFullViewController.m; sourceTree = "<group>"; };
+		ACFDCCD4205DC99300CC9E76 /* MLNavigationBarTransitionDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNavigationBarTransitionDefine.h; sourceTree = "<group>"; };
+		ACFDCCD5205DC99300CC9E76 /* UINavigationBar+MLNavigationBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+MLNavigationBarTransition.m"; sourceTree = "<group>"; };
+		ACFDCCD6205DC99300CC9E76 /* NSString+MLNavigationBarTransition_Encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MLNavigationBarTransition_Encrypt.h"; sourceTree = "<group>"; };
+		ACFDCCD7205DC99400CC9E76 /* UINavigationBar+MLNavigationBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+MLNavigationBarTransition.h"; sourceTree = "<group>"; };
+		ACFDCCD8205DC99400CC9E76 /* NSString+MLNavigationBarTransition_Encrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MLNavigationBarTransition_Encrypt.m"; sourceTree = "<group>"; };
+		ACFDCCD9205DC99400CC9E76 /* UINavigationController+MLNavigationBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+MLNavigationBarTransition.h"; sourceTree = "<group>"; };
+		ACFDCCDA205DC99400CC9E76 /* UINavigationController+MLNavigationBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MLNavigationBarTransition.m"; sourceTree = "<group>"; };
 		D52D888AFC354514B0101F92 /* libPods-liwushuo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-liwushuo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC58617BB52BED16779B722 /* Pods-liwushuo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-liwushuo.release.xcconfig"; path = "Pods/Target Support Files/Pods-liwushuo/Pods-liwushuo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -520,6 +538,7 @@
 		9B47DC781FC6A5A500DBB81D /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				ACFDCCD3205DC97300CC9E76 /* MLNavigationBarTransition */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -646,6 +665,7 @@
 				9BD379AB1FEAF33200EC7298 /* LWSColumnDetailHeaderView.m */,
 				9BD379AD1FEB0CCE00EC7298 /* LWSColumnDescriptionView.h */,
 				9BD379AE1FEB0CCE00EC7298 /* LWSColumnDescriptionView.m */,
+				AC26A7B5201EB33B00B1CBF1 /* LWSColumnDescriptionView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -813,6 +833,8 @@
 				ACD221C2201BE6F6007F3312 /* LWSCategoryPostListViewController.m */,
 				ACD221C7201BF9F4007F3312 /* LWSCategoryFullViewController.h */,
 				ACD221C8201BF9F4007F3312 /* LWSCategoryFullViewController.m */,
+				ACAFD269201F88B8001F27F1 /* LWSItemCategoryViewController.h */,
+				ACAFD26A201F88B8001F27F1 /* LWSItemCategoryViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -991,6 +1013,8 @@
 				9BDBCAA01FFD8B270045608F /* LWSItemViewController.m */,
 				AC2590C12008047400340FBE /* LWSItemlWebController.h */,
 				AC2590C22008047400340FBE /* LWSItemlWebController.m */,
+				AC26A7B2201E9D8F00B1CBF1 /* LWSItemCommentController.h */,
+				AC26A7B3201E9D8F00B1CBF1 /* LWSItemCommentController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1027,6 +1051,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		ACFDCCD3205DC97300CC9E76 /* MLNavigationBarTransition */ = {
+			isa = PBXGroup;
+			children = (
+				ACFDCCD4205DC99300CC9E76 /* MLNavigationBarTransitionDefine.h */,
+				ACFDCCD6205DC99300CC9E76 /* NSString+MLNavigationBarTransition_Encrypt.h */,
+				ACFDCCD8205DC99400CC9E76 /* NSString+MLNavigationBarTransition_Encrypt.m */,
+				ACFDCCD7205DC99400CC9E76 /* UINavigationBar+MLNavigationBarTransition.h */,
+				ACFDCCD5205DC99300CC9E76 /* UINavigationBar+MLNavigationBarTransition.m */,
+				ACFDCCD9205DC99400CC9E76 /* UINavigationController+MLNavigationBarTransition.h */,
+				ACFDCCDA205DC99400CC9E76 /* UINavigationController+MLNavigationBarTransition.m */,
+			);
+			path = MLNavigationBarTransition;
+			sourceTree = "<group>";
+		};
 		B97905BF28CAE4D8DFFE12D7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1047,8 +1085,8 @@
 				9B47DC1C1FC69F6100DBB81D /* Sources */,
 				9B47DC1D1FC69F6100DBB81D /* Frameworks */,
 				9B47DC1E1FC69F6100DBB81D /* Resources */,
-				98D76E2A7C00D39F70102AA2 /* [CP] Embed Pods Frameworks */,
 				495A7C3D991FE33ACB527174 /* [CP] Copy Pods Resources */,
+				9BFEAD3420B5B97900654AB6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1066,7 +1104,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = LWS;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Pinellia Zeit";
 				TargetAttributes = {
 					9B47DC1F1FC69F6100DBB81D = {
@@ -1098,6 +1136,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC26A7B6201EB33B00B1CBF1 /* LWSColumnDescriptionView.xib in Resources */,
 				9B47DC891FC6A5A600DBB81D /* Main.storyboard in Resources */,
 				9BB9406F1FF0B2B8000B7564 /* 2016-12-12 11.56.41.jpg in Resources */,
 				9B47DC861FC6A5A600DBB81D /* Assets.xcassets in Resources */,
@@ -1133,31 +1172,31 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-liwushuo/Pods-liwushuo-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/DXPopover/DXPopover.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DXPopover.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-liwushuo/Pods-liwushuo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		98D76E2A7C00D39F70102AA2 /* [CP] Embed Pods Frameworks */ = {
+		9BFEAD3420B5B97900654AB6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-liwushuo/Pods-liwushuo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 5954070569dfc341766bf1b92d3ff6ee62290587 f66da61ffa34bc06e436e98b43821503b9253ab3cd181fbbe0306eacacaa8242";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1173,8 +1212,10 @@
 				9BD3799D1FE855AE00EC7298 /* LWSPosts.m in Sources */,
 				9B01CF501FE2A712003CA01F /* LWSCategoryPostCollectionListView.m in Sources */,
 				9BB74CEC1FF6EE1B00F65E68 /* LWSSettingViewController.m in Sources */,
+				ACFDCCDD205DC99400CC9E76 /* UINavigationController+MLNavigationBarTransition.m in Sources */,
 				9B01CF351FE1C2AB003CA01F /* LWSPostCategoryViewController.m in Sources */,
 				9B01CF411FE2759D003CA01F /* LWSCategoryModel.m in Sources */,
+				ACFDCCDC205DC99400CC9E76 /* NSString+MLNavigationBarTransition_Encrypt.m in Sources */,
 				9B01CF2C1FE10C4F003CA01F /* LWSRankListItemCell.m in Sources */,
 				9BDBCAA11FFD8B270045608F /* LWSItemViewController.m in Sources */,
 				9B01CF441FE27B22003CA01F /* LWSCategoryHeaderView.m in Sources */,
@@ -1199,9 +1240,11 @@
 				ACD221C6201BEEC7007F3312 /* LWSMePostColumnCell.m in Sources */,
 				AC36A6582003AC4200681EB7 /* LWSRecommendPosts.m in Sources */,
 				9BDBCA961FFC62950045608F /* LWSCommentViewCell.m in Sources */,
+				ACFDCCDB205DC99400CC9E76 /* UINavigationBar+MLNavigationBarTransition.m in Sources */,
 				9BDBCA8D1FFC23200045608F /* LWSUser.m in Sources */,
 				ACD221C0201BD3E2007F3312 /* LWSLineView.m in Sources */,
 				9B01CF121FDD949F003CA01F /* Paging.m in Sources */,
+				ACAFD26B201F88B8001F27F1 /* LWSItemCategoryViewController.m in Sources */,
 				9BD379A91FE9B84B00EC7298 /* LWSDetailPostsListCell.m in Sources */,
 				9BB74CDA1FF5DE5700F65E68 /* LWSMeTextBubbleView.m in Sources */,
 				9BD379801FE7DEE900EC7298 /* LWSGiftCategoryReusableView.m in Sources */,
@@ -1273,6 +1316,7 @@
 				9B01CF5F1FE2B09B003CA01F /* LWSCategoryPostCollectionListCell.m in Sources */,
 				9B01CF141FDD949F003CA01F /* LWSGiftCategoryModel.m in Sources */,
 				9BF043801FE31A30004C0BDB /* LWSGiftCategoryCell.m in Sources */,
+				AC26A7B4201E9D8F00B1CBF1 /* LWSItemCommentController.m in Sources */,
 				9BB74CC81FF588AF00F65E68 /* LWSFavoriteLists.m in Sources */,
 				9B01CF1D1FE0020F003CA01F /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				9BDBCA8F1FFC23200045608F /* LWSCommentsdata.m in Sources */,
@@ -1318,6 +1362,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1325,6 +1370,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1373,6 +1419,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1380,6 +1427,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1414,13 +1462,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W7C6P96PWZ;
+				DEVELOPMENT_TEAM = HHSCMH6YJR;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/liwushuo/Expand/Marcros/PrefixHeader.pch";
 				INFOPLIST_FILE = liwushuo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = lee.liwushuo;
+				PRODUCT_BUNDLE_IDENTIFIER = lee.liwushuo.com.cc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/** $(inherited)/**";
@@ -1433,13 +1481,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W7C6P96PWZ;
+				DEVELOPMENT_TEAM = HHSCMH6YJR;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/liwushuo/Expand/Marcros/PrefixHeader.pch";
 				INFOPLIST_FILE = liwushuo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = lee.liwushuo;
+				PRODUCT_BUNDLE_IDENTIFIER = lee.liwushuo.com.cc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/** $(inherited)/**";

@@ -10,7 +10,9 @@
 #import "LWSHomeViewCell.h"
 #import "DataModels.h"
 #import "CustomShareView.h"
-
+#import "LWSDetailViewController.h"
+#import "LWSColumnDetailViewController.h"
+#import "LWSPosts.h"
 static NSString *const kCustomCell = @"kCustom";
 
 @interface LWSCategoryViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -18,7 +20,7 @@ static NSString *const kCustomCell = @"kCustom";
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
-
+@property (nonatomic, strong) NSString *nextPageUrl;
 @end
 
 @implementation LWSCategoryViewController
@@ -108,6 +110,7 @@ static NSString *const kCustomCell = @"kCustom";
         if ([resultObject[@"code"] isEqualToNumber:@200]) {
             
             LWSData *model = [LWSData modelObjectWithDictionary:resultObject[@"data"]];
+            weakSelf.nextPageUrl = model.paging.nextUrl;
             weakSelf.dataArray = [NSMutableArray arrayWithArray:model.posts];
             [weakSelf.tableView reloadData];
             
@@ -133,9 +136,25 @@ static NSString *const kCustomCell = @"kCustom";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    LWSPosts *model = self.dataArray[indexPath.row];
     LWSHomeViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCustomCell];
-    [cell configCellModel:self.dataArray[indexPath.row]];
+    cell.model = model;
+    WeakSelf;
+    cell.typeClickBlcok = ^{
+        LWSColumnDetailViewController *vc = [[LWSColumnDetailViewController alloc] init];
+        vc.columnID = [NSString stringWithFormat:@"%.f",model.column.columnIdentifier];
+        vc.titleStr = model.column.title;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    };
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    LWSPosts *model = self.dataArray[indexPath.row];
+    LWSDetailViewController *vc = [LWSDetailViewController new];
+    vc.postsID = [NSString stringWithFormat:@"%.f",model.postsIdentifier];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - lazyload

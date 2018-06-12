@@ -19,9 +19,9 @@
 #import <Foundation/Foundation.h>
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 #import "FLAnimatedImageView.h"
-#import "Chameleon.h"
+#import <ChameleonFramework/Chameleon.h>
 #import "CustomShareView.h"
-
+#import "UINavigationBar+MLNavigationBarTransition.h"
 static NSString *const token = @"qvifmyuqwj";
 
 #define Main_Screen_Height [UIScreen mainScreen].bounds.size.height
@@ -72,6 +72,30 @@ CG_INLINE UIView *UI_UILineView() {
     UIView *lineView = [[UIView alloc] init];
     lineView.backgroundColor = rgba(240, 230, 230, 1.0);
     return lineView;
+}
+
+CG_INLINE UITableView *UI_UITableView(UITableViewStyle style, CGFloat rowHeight, UIViewController *vc) {
+    UITableView *tb = [[UITableView alloc] initWithFrame:CGRectZero style:style];
+    [vc.view addSubview:tb];
+    tb.tableFooterView = [UIView new];
+    tb.rowHeight = UITableViewAutomaticDimension;
+    tb.estimatedRowHeight = rowHeight;
+    tb.backgroundColor = BackgroundColor;
+    tb.showsVerticalScrollIndicator = NO;
+    [tb mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (@available(iOS 11.0, *)) {
+            make.top.equalTo(vc.view.mas_safeAreaLayoutGuideTop);
+            make.left.equalTo(vc.view.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(vc.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.equalTo(vc.view.mas_safeAreaLayoutGuideBottom);
+            
+        } else {
+            // Fallback on earlier versions
+            make.edges.equalTo(vc.view).insets(UIEdgeInsetsMake(64, 0, 0, 0));
+        }
+    }];
+ 
+    return tb;
 }
 
 // Include any system framework and library headers here that should be included in all compilation units.

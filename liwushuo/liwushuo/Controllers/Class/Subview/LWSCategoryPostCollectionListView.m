@@ -10,7 +10,8 @@
 #import "LWSCategoryPostCollectionListView.h"
 #import "LWSCategoryPostCollectionCell.h"
 #import "LWSCategoryPostCollectionModel.h"
-
+#import "LWSColumnDetailViewController.h"
+#import "LWSColumns.h"
 static NSString *const kCategoryPostCollectionCell = @"kCategoryPostCollectionCell";
 
 @interface LWSCategoryPostCollectionListView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
@@ -72,9 +73,10 @@ static NSString *const kCategoryPostCollectionCell = @"kCategoryPostCollectionCe
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIViewController *vc = [[UIViewController alloc] init];
-    vc.view.backgroundColor = [UIColor orangeColor];
-
+    LWSColumns *model = self.dataArray[indexPath.item];
+    LWSColumnDetailViewController *vc = [[LWSColumnDetailViewController alloc] init];
+    vc.columnID = [NSString stringWithFormat:@"%.f",model.columnsIdentifier];
+    vc.titleStr = model.title;
     [[self viewController].navigationController pushViewController:vc animated:YES];
 }
 
